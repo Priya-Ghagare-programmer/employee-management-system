@@ -29,6 +29,15 @@ export default function AdminLogin() {
             }
 
             // =========================
+            // STORE JWT TOKEN
+            // =========================
+
+            localStorage.setItem(
+                "token",
+                data.token
+            );
+
+            // =========================
             // ADMIN LOCAL STORAGE
             // =========================
 

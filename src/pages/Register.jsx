@@ -12,7 +12,21 @@ export default function Register() {
   });
   const navigate = useNavigate();
 
-  useEffect(() => { departmentApi.getAll().then(r=>setDepartments(r.data)).catch(()=>{}); }, []);
+  useEffect(() => {
+  departmentApi
+    .getAll()
+    .then((r) => {
+      console.log("Departments:", r.data);
+      setDepartments(r.data);
+    })
+    .catch((err) => {
+      console.error("Department API Error:", err);
+      setError(
+        err.response?.data?.message ||
+        `Failed to load departments. Status: ${err.response?.status || "Unknown"}`
+      );
+    });
+}, []);
 
   const submit = async e => {
     e.preventDefault(); setError(""); setMessage("");
